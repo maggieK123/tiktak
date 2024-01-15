@@ -1,5 +1,8 @@
 package main;
-
+/*
+Creates the board used for tiktaktoe game. Lets you print the board, check whether there is an open space at specific coordinates,
+checks whether a player has won the game, checks whether there is a draw, Finds winning game move for diagonal/horizontal/vertical win
+ */
 public class Board {
 
     private String[][] board;
@@ -70,6 +73,7 @@ public class Board {
         return false;
     }
 
+    // Checks whether no one can win the game
     public Boolean isDraw(){
         if (checkBoard()){ //no draw, continue game
             return false;
@@ -84,12 +88,13 @@ public class Board {
         return true;
     }
 
+    // Finds winning game move via diagonal win. Gives whether to look for "X" or "O" on board.
     public Integer[] findWinningPositionDiagonal(String status) {
         // Check diagonal for len - 1
         int count = 0;
         Integer[] position = new Integer[2];
 
-        for (int i = 0; i < this.board.length; i += 1) {
+        for (int i = 0; i < this.board.length; i += 1) { //searches board for a diagonal win
             if (this.board[i][i] == status) {
                 count += 1;
             } else {
@@ -97,19 +102,19 @@ public class Board {
                 position[1] = i;
             }
         }
-        if (count == this.board.length - 1) {
+        if (count == this.board.length - 1) { // there is a winning move
             return position;
         }
         position[0] = -1;
         position[1] = -1;
-        return position;
+        return position; // no winning move
     }
-
+    // Finds winning game move via horizontal win. Gives whether to look for "X" or "O" on board.
     public Integer[] findWinningPositionHorizontal(String status) {
         int count = 0;
         Integer[] position = new Integer[2];
         // check horizontal
-        for (int i = 0; i < this.board.length; i += 1) {
+        for (int i = 0; i < this.board.length; i += 1) { // Looks for a horizontal winning move
             count = 0;
             for (int j = 0; j < this.board.length; j += 1) {
                 if (this.board[i][j] == status) {
@@ -119,20 +124,21 @@ public class Board {
                     position[1] = j;
                 }
             }
-            if (count == this.board.length - 1) {
+            if (count == this.board.length - 1) {//there is a winning move
                 return position;
             }
         }
         position[0] = -1;
         position[1] = -1;
-        return position;
+        return position; // no winning move
     }
 
+    // Finds winning game move via vertical win. Gives whether to look for "X" or "O" on board.
     public Integer[] findWinningPositionVertical(String status){
         int count = 0;
         Integer[] position = new Integer[2];
         //check vertical
-        for (int i = 0; i < this.board.length; i+=1){
+        for (int i = 0; i < this.board.length; i+=1){// Looks for a vertical winning move
             count = 0;
             for (int j = 0; j < this.board.length; j+=1){
                 if (this.board[j][i] == status){
@@ -143,12 +149,12 @@ public class Board {
                     position[1] = i;
                 }
             }
-            if (count == this.board.length-1){
+            if (count == this.board.length-1){ //there is a winning move
                 return position;
             }
         }
         position[0] = -1;
         position[1] = -1;
-        return position;
+        return position; // no winning move
     }
 }

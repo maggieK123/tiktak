@@ -1,10 +1,12 @@
 package main;
-
+/*
+Player class. Each player has a name, number of games won, number of games lost, and the status of current game ("X" or "O").
+ */
 public class player {
     private String name;
     private int wins;
     private int losses;
-    private String status;
+    private String status; // X or O
 
     public player(String name, int wins, int losses, String status){
         this.name = name;

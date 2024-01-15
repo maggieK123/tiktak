@@ -4,6 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+/*
+Runs the program. Creates the Player and starts the tiktaktoe game.
+ */
 public class main {
 
     public static void  main(String [] args){
