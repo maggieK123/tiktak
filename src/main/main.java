@@ -30,6 +30,6 @@ public class main {
         }
 
         tiktaktoe game = new tiktaktoe(player1,computer,3); // Creates tiktaktoe object
-
+        game.playGame();
     }
 }

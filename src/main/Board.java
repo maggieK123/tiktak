@@ -50,7 +50,6 @@ public class Board {
         return true; // There is a player who chose this position
     }
 
-
     //Checks whether the game over == "Won"
     public Boolean checkBoard(){
         // Checks for a diagonal win
@@ -69,5 +68,19 @@ public class Board {
         }
         // no winner yet
         return false;
+    }
+
+    public Boolean isDraw(){
+        if (checkBoard()){ //no draw, continue game
+            return false;
+        }
+        for ( int i = 0; i < board.length; i+=1){
+            for ( int j = 0; j < board.length; j+=1){
+                if (board[i][j] == null){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

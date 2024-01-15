@@ -19,15 +19,14 @@ public class tiktaktoe {
     public Boolean playGame(){
         Scanner myObj = new Scanner(System.in);
         Random rand = new Random();
-        Boolean turn = false;
+        Boolean turn = true;
+        int i = 0;
+        int j = 0;
         while (!this.board.checkBoard()) { // while no one has won the this.board
             if (turn) { //Player's Turn
                 turn = false;
                 this.board.printBoard();
-                //pick position
-                int i = 0;
-                int j = 0;
-                while (this.board.positionStatus(i, j)) {
+                do {
                     System.out.println("Pick a position");
                     try {
                         i = myObj.nextInt(); // Read user input
@@ -35,7 +34,8 @@ public class tiktaktoe {
                     } catch (Exception e) {
                         System.out.println(e);
                     }
-                }
+                } while (this.board.positionStatus(i, j));
+
                 this.board.setBoard(i, j, this.person.getStatus());
                 if (this.board.checkBoard()) {
                     this.person.setWins();
@@ -43,17 +43,21 @@ public class tiktaktoe {
                 }
             } else { //Computer's turn
                 turn = true;
-                int i = rand.nextInt(3);
-                int j = rand.nextInt(3);
+                i = rand.nextInt(3);
+                j = rand.nextInt(3);
                 while (this.board.positionStatus(i, j)) {
                     i = rand.nextInt(3);
                     j = rand.nextInt(3);
                 }
+
                 this.board.setBoard(i, j, computer.getStatus());
                 if (this.board.checkBoard()) {
                     computer.setWins();
                     System.out.println("You Loss! Player 1");
                 }
+            }
+            if (this.board.isDraw()){
+                System.out.println("It is a Draw");
             }
         }
 
