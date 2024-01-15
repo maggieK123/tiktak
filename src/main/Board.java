@@ -62,7 +62,7 @@ public class Board {
                 return true;
             }
             // Checks for a vertical win
-            if(this.board[0][1] == this.board[1][i] && this.board[0][i] == this.board[2][i] && this.board[2][i] != null && this.board[1][i] != null && this.board[0][i] != null){
+            if(this.board[0][i] == this.board[1][i] && this.board[0][i] == this.board[2][i] && this.board[2][i] != null && this.board[1][i] != null && this.board[0][i] != null){
                 return true;
             }
         }
@@ -82,5 +82,73 @@ public class Board {
             }
         }
         return true;
+    }
+
+    public Integer[] findWinningPositionDiagonal(String status) {
+        // Check diagonal for len - 1
+        int count = 0;
+        Integer[] position = new Integer[2];
+
+        for (int i = 0; i < this.board.length; i += 1) {
+            if (this.board[i][i] == status) {
+                count += 1;
+            } else {
+                position[0] = i;
+                position[1] = i;
+            }
+        }
+        if (count == this.board.length - 1) {
+            return position;
+        }
+        position[0] = -1;
+        position[1] = -1;
+        return position;
+    }
+
+    public Integer[] findWinningPositionHorizontal(String status) {
+        int count = 0;
+        Integer[] position = new Integer[2];
+        // check horizontal
+        for (int i = 0; i < this.board.length; i += 1) {
+            count = 0;
+            for (int j = 0; j < this.board.length; j += 1) {
+                if (this.board[i][j] == status) {
+                    count += 1;
+                } else {
+                    position[0] = i;
+                    position[1] = j;
+                }
+            }
+            if (count == this.board.length - 1) {
+                return position;
+            }
+        }
+        position[0] = -1;
+        position[1] = -1;
+        return position;
+    }
+
+    public Integer[] findWinningPositionVertical(String status){
+        int count = 0;
+        Integer[] position = new Integer[2];
+        //check vertical
+        for (int i = 0; i < this.board.length; i+=1){
+            count = 0;
+            for (int j = 0; j < this.board.length; j+=1){
+                if (this.board[j][i] == status){
+                    count+=1;
+                }
+                else{
+                    position[0] = j;
+                    position[1] = i;
+                }
+            }
+            if (count == this.board.length-1){
+                return position;
+            }
+        }
+        position[0] = -1;
+        position[1] = -1;
+        return position;
     }
 }
